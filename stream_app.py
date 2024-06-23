@@ -33,7 +33,7 @@ def mostrar_introduccion():
     La importancia de medir nuestra huella de carbono radica en la necesidad de comprender el impacto que nuestras actividades tienen sobre el medio ambiente 
     y tomar acciones para reducirlo.
     """)
-    if st.markdown('<button style="background-color: #155724; color: white; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 12px;">COMENZAR</button>', unsafe_allow_html=True):
+    if st.button('COMENZAR'):
         st.session_state.comenzar = True
 
 # Function to display the calculator
@@ -73,13 +73,29 @@ if st.session_state.comenzar:
 else:
     mostrar_introduccion()
 
-# Custom CSS to change the background color and text color
+# Custom CSS to change the background color, text color, and button style
 st.markdown(
     """
     <style>
     .stApp {
         background-color: #d4edda;
         color: #155724;
+    }
+    h1, h2 {
+        color: #155724;
+    }
+    div.stButton > button {
+        background-color: #155724;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
     }
     </style>
     """,
