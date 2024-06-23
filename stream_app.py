@@ -1,89 +1,90 @@
 import streamlit as st
 
 # Base de datos ficticia para factores de emisión
+# Aquí deberías usar factores de emisión reales.
 FACTORES_EMISION = {
     'aparatos': {
-        'Refrigerador': 0.1,
-        'Horno de microondas': 0.05,
-        'Computadora': 0.03,
-        'Laptop': 0.02,
-        'Consola de videojuegos': 0.04,
-        'Estéreo': 0.01,
-        'Televisión': 0.06,
-        'Lavadora': 0.07,
-        'Secadora de ropa': 0.08,
-        'Lavatrastes': 0.09,
-        'Aspiradora': 0.02,
-        'Aire acondicionado': 0.15,
-        'Ventiladores': 0.03
+        'Refrigerador': 100,  # en kg CO2/año
+        'Horno de microondas': 50,  # en kg CO2/año
+        'Computadora': 30,  # en kg CO2/año
+        'Laptop': 20,  # en kg CO2/año
+        'Consola de videojuegos': 40,  # en kg CO2/año
+        'Estéreo': 10,  # en kg CO2/año
+        'Televisión': 60,  # en kg CO2/año
+        'Lavadora': 70,  # en kg CO2/año
+        'Secadora de ropa': 80,  # en kg CO2/año
+        'Lavatrastes': 90,  # en kg CO2/año
+        'Aspiradora': 20,  # en kg CO2/año
+        'Aire acondicionado': 150,  # en kg CO2/año
+        'Ventiladores': 30  # en kg CO2/año
     },
     'gas': {
-        'Gas natural': 1.0,
-        'Gas LP': 1.2
+        'Gas natural': 1000,  # en kg CO2/año
+        'Gas LP': 1200  # en kg CO2/año
     },
     'focos': {
-        'LED': 0.1,
-        'Ahorradores': 0.2,
-        'Incandescentes': 0.5,
-        'Desconozco': 0.3
+        'LED': 10,  # en kg CO2/año
+        'Ahorradores': 20,  # en kg CO2/año
+        'Incandescentes': 50,  # en kg CO2/año
+        'Desconozco': 30  # en kg CO2/año
     },
     'transporte': {
-        'Auto': 1.0,
-        'Autobus': 0.5,
-        'Bicicleta': 0.01,
-        'Combi': 0.6,
-        'Metro': 0.2,
-        'Metrobus': 0.3,
-        'Motocicleta': 0.8,
-        'Voy caminando': 0.0
+        'Auto': 5000,  # en kg CO2/año
+        'Autobus': 2500,  # en kg CO2/año
+        'Bicicleta': 10,  # en kg CO2/año
+        'Combi': 3000,  # en kg CO2/año
+        'Metro': 1000,  # en kg CO2/año
+        'Metrobus': 1500,  # en kg CO2/año
+        'Motocicleta': 4000,  # en kg CO2/año
+        'Voy caminando': 0  # en kg CO2/año
     },
     'tiempo_transporte': {
-        'Menos de 10 minutos': 0.1,
-        'Entre 10 y 20 minutos': 0.2,
-        'Entre 20 y 40 minutos': 0.3,
-        'Entre 40 minutos y 1 hora': 0.4,
-        'Una hora y media': 0.5,
-        'Más de dos horas': 0.6,
-        'Más de tres horas': 0.7
+        'Menos de 10 minutos': 100,  # en kg CO2/año
+        'Entre 10 y 20 minutos': 200,  # en kg CO2/año
+        'Entre 20 y 40 minutos': 300,  # en kg CO2/año
+        'Entre 40 minutos y 1 hora': 400,  # en kg CO2/año
+        'Una hora y media': 500,  # en kg CO2/año
+        'Más de dos horas': 600,  # en kg CO2/año
+        'Más de tres horas': 700  # en kg CO2/año
     },
     'vuelos': {
-        'Viajero frecuente, más de dos vuelos internacionales y dos nacionales al año.': 3.0,
-        'Aproximadamente un vuelo (ida y vuelta) internacional al año.': 2.0,
-        'Más de un vuelo (ida y vuelta) nacional al año.': 1.5,
-        'Aproximadamente un vuelo (ida y vuelta) nacional al año.': 1.0,
-        'No suelo volar.': 0.0
+        'Viajero frecuente, más de dos vuelos internacionales y dos nacionales al año.': 3000,  # en kg CO2/año
+        'Aproximadamente un vuelo (ida y vuelta) internacional al año.': 2000,  # en kg CO2/año
+        'Más de un vuelo (ida y vuelta) nacional al año.': 1500,  # en kg CO2/año
+        'Aproximadamente un vuelo (ida y vuelta) nacional al año.': 1000,  # en kg CO2/año
+        'No suelo volar.': 0  # en kg CO2/año
     },
     'carne': {
-        'Diario': 1.0,
-        '4-6 días a la semana': 0.8,
-        '1-3 días a la semana': 0.5,
-        'No consumo': 0.0
+        'Diario': 1000,  # en kg CO2/año
+        '4-6 días a la semana': 800,  # en kg CO2/año
+        '1-3 días a la semana': 500,  # en kg CO2/año
+        'No consumo': 0  # en kg CO2/año
     },
     'plasticos': {
-        'Diario': 1.0,
-        'De vez en cuando - 1 vez por semana.': 0.5,
-        'Rara vez.': 0.2,
-        'No uso plástico.': 0.0
+        'Diario': 1000,  # en kg CO2/año
+        'De vez en cuando - 1 vez por semana.': 500,  # en kg CO2/año
+        'Rara vez.': 200,  # en kg CO2/año
+        'No uso plástico.': 0  # en kg CO2/año
     },
     'ropa': {
-        'Siempre es nueva y de importación.': 2.0,
-        'Siempre es nueva y nacional.': 1.5,
-        'De segunda mano.': 0.5,
-        'La reparo y reutilizo.': 0.2
+        'Siempre es nueva y de importación.': 2000,  # en kg CO2/año
+        'Siempre es nueva y nacional.': 1500,  # en kg CO2/año
+        'De segunda mano.': 500,  # en kg CO2/año
+        'La reparo y reutilizo.': 200  # en kg CO2/año
     },
     'dispositivos': {
-        'Cada 6 meses': 1.0,
-        'Cada año': 0.8,
-        'De 2 a 3 años': 0.5,
-        'Más de 3 años': 0.2,
-        'No tengo este dispositivo': 0.0
+        'Cada 6 meses': 1000,  # en kg CO2/año
+        'Cada año': 800,  # en kg CO2/año
+        'De 2 a 3 años': 500,  # en kg CO2/año
+        'Más de 3 años': 200,  # en kg CO2/año
+        'No tengo este dispositivo': 0  # en kg CO2/año
     }
 }
 
 # Function to display the introduction page
 def mostrar_introduccion():
-    st.markdown("<h1 style='color: #155724;'>Calculadora de Huella de Carbono</h1>", unsafe_allow_html=True)
-    st.markdown("<h2 style='color: #155724;'>¿Qué es una huella de carbono?</h2>", unsafe_allow_html=True)
+    st.markdown("<h1 style='color: #155724;'>Calculadora de Huella de Carbono 🌍</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color: #155724;'>¿Qué es una huella de carbono? 🌱</h2>", unsafe_allow_html=True)
     st.write("""
     La huella de carbono es la totalidad de gases de efecto invernadero emitidos por efecto directo o indirecto de un individuo, organización, evento o producto. 
     Se mide en unidades de dióxido de carbono equivalente (CO2e) y se calcula considerando diversas actividades como el transporte, el consumo de energía, 
@@ -101,7 +102,7 @@ def mostrar_calculadora():
     pagina = st.session_state.pagina
 
     if pagina == 1:
-        st.markdown("<h2 style='color: #155724;'>¿QUÉ APARATOS ELECTRÓNICOS TIENES EN CASA?</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color: #155724;'>¿QUÉ APARATOS ELECTRÓNICOS TIENES EN CASA? 💻</h2>", unsafe_allow_html=True)
         st.write("Selecciona todos los que tengas:")
         aparatos = FACTORES_EMISION['aparatos']
         for aparato in aparatos.keys():
@@ -110,7 +111,7 @@ def mostrar_calculadora():
             st.session_state.pagina = 2
 
     elif pagina == 2:
-        st.markdown("<h2 style='color: #155724;'>EN MI DOMICILIO UTILIZO EL SIGUIENTE TIPO DE GAS</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color: #155724;'>EN MI DOMICILIO UTILIZO EL SIGUIENTE TIPO DE GAS 🔥</h2>", unsafe_allow_html=True)
         gas = FACTORES_EMISION['gas']
         st.radio('Selecciona el tipo de gas que utilizas:', list(gas.keys()), key='tipo_gas')
         if st.button('Anterior'):
@@ -119,7 +120,7 @@ def mostrar_calculadora():
             st.session_state.pagina = 3
 
     elif pagina == 3:
-        st.markdown("<h2 style='color: #155724;'>EN MI CASA LOS FOCOS SON</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color: #155724;'>EN MI CASA LOS FOCOS SON 💡</h2>", unsafe_allow_html=True)
         focos = FACTORES_EMISION['focos']
         st.radio('Selecciona el tipo de focos que utilizas:', list(focos.keys()), key='tipo_focos')
         if st.button('Anterior'):
@@ -128,7 +129,7 @@ def mostrar_calculadora():
             st.session_state.pagina = 4
 
     elif pagina == 4:
-        st.markdown("<h2 style='color: #155724;'>¿QUE MEDIO DE TRANSPORTE UTILIZAS PARA LLEGAR AL TRABAJO O A LA ESCUELA?</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color: #155724;'>¿QUÉ MEDIO DE TRANSPORTE UTILIZAS PARA LLEGAR AL TRABAJO O A LA ESCUELA? 🚗</h2>", unsafe_allow_html=True)
         transporte = FACTORES_EMISION['transporte']
         st.radio('Selecciona tu medio de transporte:', list(transporte.keys()), key='medio_transporte')
         if st.button('Anterior'):
@@ -137,7 +138,7 @@ def mostrar_calculadora():
             st.session_state.pagina = 5
 
     elif pagina == 5:
-        st.markdown("<h2 style='color: #155724;'>¿EN CUÁNTO TIEMPO HACES ESE RECORRIDO?</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color: #155724;'>¿EN CUÁNTO TIEMPO HACES ESE RECORRIDO? ⏰</h2>", unsafe_allow_html=True)
         tiempo_transporte = FACTORES_EMISION['tiempo_transporte']
         st.radio('Selecciona el tiempo que tardas:', list(tiempo_transporte.keys()), key='tiempo_transporte')
         if st.button('Anterior'):
@@ -146,7 +147,7 @@ def mostrar_calculadora():
             st.session_state.pagina = 6
 
     elif pagina == 6:
-        st.markdown("<h2 style='color: #155724;'>¿CON QUÉ FRECUENCIA VUELAS EN AVIÓN?</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color: #155724;'>¿CON QUÉ FRECUENCIA VUELAS EN AVIÓN? ✈️</h2>", unsafe_allow_html=True)
         vuelos = FACTORES_EMISION['vuelos']
         st.radio('Selecciona la frecuencia con la que vuelas:', list(vuelos.keys()), key='frecuencia_vuelos')
         if st.button('Anterior'):
@@ -155,15 +156,15 @@ def mostrar_calculadora():
             st.session_state.pagina = 7
 
     elif pagina == 7:
-        st.markdown("<h2 style='color: #155724;'>¿CON QUÉ FRECUENCIA COMES CARNE DE?</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color: #155724;'>¿CON QUÉ FRECUENCIA COMES CARNE DE? 🍖</h2>", unsafe_allow_html=True)
         carne = FACTORES_EMISION['carne']
-        st.write("- Res")
+        st.write("<div style='color: #155724;'>- Res</div>", unsafe_allow_html=True)
         st.radio("", list(carne.keys()), key='carne_res')
-        st.write("- Cerdo")
+        st.write("<div style='color: #155724;'>- Cerdo</div>", unsafe_allow_html=True)
         st.radio("", list(carne.keys()), key='carne_cerdo')
-        st.write("- Pollo")
+        st.write("<div style='color: #155724;'>- Pollo</div>", unsafe_allow_html=True)
         st.radio("", list(carne.keys()), key='carne_pollo')
-        st.write("- Pescado")
+        st.write("<div style='color: #155724;'>- Pescado</div>", unsafe_allow_html=True)
         st.radio("", list(carne.keys()), key='carne_pescado')
         if st.button('Anterior'):
             st.session_state.pagina = 6
@@ -171,7 +172,7 @@ def mostrar_calculadora():
             st.session_state.pagina = 8
 
     elif pagina == 8:
-        st.markdown("<h2 style='color: #155724;'>¿CON QUÉ REGULARIDAD UTILIZAS PLÁSTICOS DE UN SOLO USO?</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color: #155724;'>¿CON QUÉ REGULARIDAD UTILIZAS PLÁSTICOS DE UN SOLO USO? 🛍️</h2>", unsafe_allow_html=True)
         plasticos = FACTORES_EMISION['plasticos']
         st.radio('Selecciona la regularidad:', list(plasticos.keys()), key='uso_plasticos')
         if st.button('Anterior'):
@@ -180,7 +181,7 @@ def mostrar_calculadora():
             st.session_state.pagina = 9
 
     elif pagina == 9:
-        st.markdown("<h2 style='color: #155724;'>LA ROPA QUE UTILIZO...</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color: #155724;'>LA ROPA QUE UTILIZO... 👚</h2>", unsafe_allow_html=True)
         ropa = FACTORES_EMISION['ropa']
         st.radio('Selecciona la opción que más te aplica:', list(ropa.keys()), key='uso_ropa')
         if st.button('Anterior'):
@@ -189,15 +190,15 @@ def mostrar_calculadora():
             st.session_state.pagina = 10
 
     elif pagina == 10:
-        st.markdown("<h2 style='color: #155724;'>CADA CUÁNTO CAMBIO MIS DISPOSITIVOS ELECTRÓNICOS</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color: #155724;'>CADA CUÁNTO CAMBIO MIS DISPOSITIVOS ELECTRÓNICOS 🖥️</h2>", unsafe_allow_html=True)
         dispositivos = FACTORES_EMISION['dispositivos']
-        st.write("- Celular")
+        st.write("<div style='color: #155724;'>- Celular</div>", unsafe_allow_html=True)
         st.radio("", list(dispositivos.keys()), key='cambio_celular')
-        st.write("- Tableta")
+        st.write("<div style='color: #155724;'>- Tableta</div>", unsafe_allow_html=True)
         st.radio("", list(dispositivos.keys()), key='cambio_tableta')
-        st.write("- Computadora")
+        st.write("<div style='color: #155724;'>- Computadora</div>", unsafe_allow_html=True)
         st.radio("", list(dispositivos.keys()), key='cambio_computadora')
-        st.write("- Consola de videojuegos")
+        st.write("<div style='color: #155724;'>- Consola de videojuegos</div>", unsafe_allow_html=True)
         st.radio("", list(dispositivos.keys()), key='cambio_consola')
         if st.button('Anterior'):
             st.session_state.pagina = 9
@@ -228,9 +229,12 @@ def mostrar_calculadora():
         total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_computadora', ''), 0)
         total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_consola', ''), 0)
 
+        # Convertir a toneladas
+        total_toneladas = total / 1000
+
         st.markdown("<h2 style='color: #155724;'>Resultado</h2>", unsafe_allow_html=True)
         st.subheader('Tu Huella de Carbono Total es:')
-        st.write(f'{total:.2f} kg CO2 por mes')
+        st.write(f'{total_toneladas:.2f} toneladas de CO2 por año')
         if st.button('Volver al inicio'):
             st.session_state.pagina = 0
 
@@ -266,6 +270,9 @@ st.markdown(
         margin: 4px 2px;
         cursor: pointer;
         border-radius: 12px;
+    }
+    .stRadio > label, .stCheckbox > label {
+        color: #155724;
     }
     </style>
     """,
