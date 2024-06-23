@@ -73,15 +73,15 @@ if st.session_state.comenzar:
 else:
     mostrar_introduccion()
 
-# Custom CSS to change the background color
+# Custom CSS to change the background color and text color
 st.markdown(
     """
     <style>
     .stApp {
         background-color: #d4edda;
+        color: #155724;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
-
