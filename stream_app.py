@@ -22,8 +22,8 @@ def calcular_huella_de_carbono(transporte, energia, consumo):
 
 # Function to display the introduction page
 def mostrar_introduccion():
-    st.title('Calculadora de Huella de Carbono')
-    st.header('¿Qué es una huella de carbono?')
+    st.markdown("<h1 style='color: #155724;'>Calculadora de Huella de Carbono</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color: #155724;'>¿Qué es una huella de carbono?</h2>", unsafe_allow_html=True)
     st.write("""
     La huella de carbono es la totalidad de gases de efecto invernadero emitidos por efecto directo o indirecto de un individuo, organización, evento o producto. 
     Se mide en unidades de dióxido de carbono equivalente (CO2e) y se calcula considerando diversas actividades como el transporte, el consumo de energía, 
@@ -33,26 +33,26 @@ def mostrar_introduccion():
     La importancia de medir nuestra huella de carbono radica en la necesidad de comprender el impacto que nuestras actividades tienen sobre el medio ambiente 
     y tomar acciones para reducirlo.
     """)
-    if st.button('COMENZAR'):
+    if st.markdown('<button style="background-color: #155724; color: white; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 12px;">COMENZAR</button>', unsafe_allow_html=True):
         st.session_state.comenzar = True
 
 # Function to display the calculator
 def mostrar_calculadora():
-    st.title('Calculadora de Huella de Carbono')
+    st.markdown("<h1 style='color: #155724;'>Calculadora de Huella de Carbono</h1>", unsafe_allow_html=True)
 
     # Sección de transporte
-    st.header('Transporte')
+    st.markdown("<h2 style='color: #155724;'>Transporte</h2>", unsafe_allow_html=True)
     km_coche = st.number_input('Kilómetros en coche por semana', min_value=0.0, step=0.1)
     km_moto = st.number_input('Kilómetros en moto por semana', min_value=0.0, step=0.1)
     km_transporte_publico = st.number_input('Kilómetros en transporte público por semana', min_value=0.0, step=0.1)
 
     # Sección de energía
-    st.header('Energía')
+    st.markdown("<h2 style='color: #155724;'>Energía</h2>", unsafe_allow_html=True)
     kwh_electricidad = st.number_input('Consumo de electricidad (kWh por mes)', min_value=0.0, step=0.1)
     m3_gas = st.number_input('Consumo de gas (m3 por mes)', min_value=0.0, step=0.1)
 
     # Otros consumos
-    st.header('Otros Consumos')
+    st.markdown("<h2 style='color: #155724;'>Otros Consumos</h2>", unsafe_allow_html=True)
     consumo_otro = st.number_input('Otros consumos de carbono (kg CO2 por mes)', min_value=0.0, step=0.1)
 
     # Botón para calcular
@@ -85,3 +85,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
