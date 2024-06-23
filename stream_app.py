@@ -22,7 +22,6 @@ def calcular_huella_de_carbono(transporte, energia, consumo):
 
 # Function to display the introduction page
 def mostrar_introduccion():
-    st.title('BioEverything')
     st.title('Calculadora de Huella de Carbono')
     st.header('¿Qué es una huella de carbono?')
     st.write("""
@@ -73,3 +72,16 @@ if st.session_state.comenzar:
     mostrar_calculadora()
 else:
     mostrar_introduccion()
+
+# Custom CSS to change the background color
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #d4edda;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
