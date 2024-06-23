@@ -209,24 +209,24 @@ def mostrar_calculadora():
         total = 0
         aparatos = FACTORES_EMISION['aparatos']
         for aparato in aparatos.keys():
-            if st.session_state.get(f'aparato_{aparato}'):
+            if st.session_state.get(f'aparato_{aparato}', False):
                 total += aparatos[aparato]
         
-        total += FACTORES_EMISION['gas'][st.session_state.tipo_gas]
-        total += FACTORES_EMISION['focos'][st.session_state.tipo_focos]
-        total += FACTORES_EMISION['transporte'][st.session_state.medio_transporte]
-        total += FACTORES_EMISION['tiempo_transporte'][st.session_state.tiempo_transporte]
-        total += FACTORES_EMISION['vuelos'][st.session_state.frecuencia_vuelos]
-        total += FACTORES_EMISION['carne'][st.session_state.carne_res]
-        total += FACTORES_EMISION['carne'][st.session_state.carne_cerdo]
-        total += FACTORES_EMISION['carne'][st.session_state.carne_pollo]
-        total += FACTORES_EMISION['carne'][st.session_state.carne_pescado]
-        total += FACTORES_EMISION['plasticos'][st.session_state.uso_plasticos]
-        total += FACTORES_EMISION['ropa'][st.session_state.uso_ropa]
-        total += FACTORES_EMISION['dispositivos'][st.session_state.cambio_celular]
-        total += FACTORES_EMISION['dispositivos'][st.session_state.cambio_tableta]
-        total += FACTORES_EMISION['dispositivos'][st.session_state.cambio_computadora]
-        total += FACTORES_EMISION['dispositivos'][st.session_state.cambio_consola]
+        total += FACTORES_EMISION['gas'].get(st.session_state.get('tipo_gas', ''), 0)
+        total += FACTORES_EMISION['focos'].get(st.session_state.get('tipo_focos', ''), 0)
+        total += FACTORES_EMISION['transporte'].get(st.session_state.get('medio_transporte', ''), 0)
+        total += FACTORES_EMISION['tiempo_transporte'].get(st.session_state.get('tiempo_transporte', ''), 0)
+        total += FACTORES_EMISION['vuelos'].get(st.session_state.get('frecuencia_vuelos', ''), 0)
+        total += FACTORES_EMISION['carne'].get(st.session_state.get('carne_res', ''), 0)
+        total += FACTORES_EMISION['carne'].get(st.session_state.get('carne_cerdo', ''), 0)
+        total += FACTORES_EMISION['carne'].get(st.session_state.get('carne_pollo', ''), 0)
+        total += FACTORES_EMISION['carne'].get(st.session_state.get('carne_pescado', ''), 0)
+        total += FACTORES_EMISION['plasticos'].get(st.session_state.get('uso_plasticos', ''), 0)
+        total += FACTORES_EMISION['ropa'].get(st.session_state.get('uso_ropa', ''), 0)
+        total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_celular', ''), 0)
+        total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_tableta', ''), 0)
+        total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_computadora', ''), 0)
+        total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_consola', ''), 0)
 
         st.markdown("<h2 style='color: #155724;'>Resultado</h2>", unsafe_allow_html=True)
         st.subheader('Tu Huella de Carbono Total es:')
@@ -271,3 +271,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
