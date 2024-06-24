@@ -227,6 +227,7 @@ def mostrar_calculadora():
         total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_celular', ''), 0)
         total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_tableta', ''), 0)
         total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_computadora', ''), 0)
+        total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_consola', ''),
         total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_consola', ''), 0)
 
         # Convertir a toneladas
@@ -235,15 +236,30 @@ def mostrar_calculadora():
         st.markdown("<h2 style='color: #155724; text-align: center;'>Resultado</h2>", unsafe_allow_html=True)
         st.subheader('Tu Huella de Carbono Total es:')
         st.write(f'{total_toneladas:.2f} toneladas de CO2 por año')
-        
-        # Mostrar imágenes según el resultado
-        if total_toneladas >= 6:
-            st.image("images/6.png", width=200)
-            st.image("images/alto.png", width=200)
-        else:
-            st.image("images/4.png", width=200)
-            st.image("images/bajo.png", width=200)
 
+        # Mostrar mensajes según el resultado
+        if total_toneladas > 6:
+            st.write("😢 🌳 Lamentablemente estás por encima del promedio nacional (México), sin embargo no te desanimes, aquí hay algunos consejos que te pueden ayudar con tu producción anual y el cuidado del medio ambiente:")
+            st.write("""
+            - Consumir menos carne roja.
+            - Usar transporte público o bicicleta.
+            - Mejorar eficiencia energética en casa.
+            - Reducir plásticos desechables.
+            - Elegir energía renovable.
+            - Reducir desperdicio de alimentos.
+            - Promover prácticas sostenibles en el trabajo.
+            """)
+        else:
+            st.balloons()
+            st.write("🎉 🌿 ¡FELICIDADES! ESTÁS POR DEBAJO DEL PROMEDIO NACIONAL, MENOR A 6 TONELADAS DE CO2 POR AÑO... PERO NO BAJEMOS LA GUARDIA. AQUÍ HAY ALGUNAS COSAS QUE PUEDES MEJORAR:")
+            st.write("""
+            1. Ahorrar agua cerrando llaves mientras no se use.
+            2. Reciclar correctamente desechos y separar la basura.
+            3. Practicar la economía circular.
+            4. Apoyar iniciativas locales de conservación y restauración ambiental.
+            5. Reducir el consumo de productos empaquetados.
+            """)
+        
         if st.button('Volver al inicio'):
             st.session_state.pagina = 0
 
@@ -269,7 +285,7 @@ st.markdown(
     }
     div.stButton > button {
         background-color: #155724;
-        color: #d4edda;
+        color: #ffffff;  /* Texto blanco */
         border: none;
         padding: 10px 20px;
         text-align: center;
@@ -287,4 +303,5 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
