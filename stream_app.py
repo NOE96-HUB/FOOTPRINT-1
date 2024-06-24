@@ -83,7 +83,6 @@ FACTORES_EMISION = {
 
 # Function to display the introduction page
 def mostrar_introduccion():
-    st.image("images/logo.png", width=200)
     st.markdown("<h1 style='color: #155724; text-align: center;'>Calculadora de Huella de Carbono 🌍</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='color: #155724;'>¿Qué es una huella de carbono? 🌱</h2>", unsafe_allow_html=True)
     st.write("""
