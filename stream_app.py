@@ -83,7 +83,8 @@ FACTORES_EMISION = {
 
 # Function to display the introduction page
 def mostrar_introduccion():
-    st.markdown("<h1 style='color: #155724;'>Calculadora de Huella de Carbono 🌍</h1>", unsafe_allow_html=True)
+    st.markdown("<center><img src='images/logo.png' width='200'></center>", unsafe_allow_html=True)
+    st.markdown("<h1 style='color: #155724; text-align: center;'>Calculadora de Huella de Carbono 🌍</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='color: #155724;'>¿Qué es una huella de carbono? 🌱</h2>", unsafe_allow_html=True)
     st.write("""
     La huella de carbono es la totalidad de gases de efecto invernadero emitidos por efecto directo o indirecto de un individuo, organización, evento o producto. 
@@ -232,9 +233,18 @@ def mostrar_calculadora():
         # Convertir a toneladas
         total_toneladas = total / 1000
 
-        st.markdown("<h2 style='color: #155724;'>Resultado</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color: #155724; text-align: center;'>Resultado</h2>", unsafe_allow_html=True)
         st.subheader('Tu Huella de Carbono Total es:')
         st.write(f'{total_toneladas:.2f} toneladas de CO2 por año')
+        
+        # Mostrar imágenes según el resultado
+        if total_toneladas >= 6:
+            st.markdown("<center><img src='images/6.png' width='200'></center>", unsafe_allow_html=True)
+            st.markdown("<center><img src='images/alto.png' width='200'></center>", unsafe_allow_html=True)
+        else:
+            st.markdown("<center><img src='images/4.png' width='200'></center>", unsafe_allow_html=True)
+            st.markdown("<center><img src='images/bajo.png' width='200'></center>", unsafe_allow_html=True)
+
         if st.button('Volver al inicio'):
             st.session_state.pagina = 0
 
@@ -255,8 +265,8 @@ st.markdown(
         background-color: #d4edda;
         color: #155724;
     }
-    h1, h2 {
-        color: #155724;
+    h1, h2, div, p {
+        color: #155724 !important;
     }
     div.stButton > button {
         background-color: #155724;
@@ -278,4 +288,5 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
