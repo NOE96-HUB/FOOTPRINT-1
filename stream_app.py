@@ -284,8 +284,8 @@ st.markdown(
         color: #155724 !important;
     }
     .stButton>button {
-        background-color: #155724 !important;
-        color: #ffffff !important;  /* Texto blanco */
+        background-color: #D4EDDA !important;
+        color: #155724 !important;  /* Texto verde oscuro */
         border: none;
         padding: 10px 20px;
         text-align: center;
