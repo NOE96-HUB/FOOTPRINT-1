@@ -83,7 +83,7 @@ FACTORES_EMISION = {
 
 # Function to display the introduction page
 def mostrar_introduccion():
-    st.markdown("<center><img src='images/logo.png' width='200'></center>", unsafe_allow_html=True)
+    st.image("images/logo.png", width=200)
     st.markdown("<h1 style='color: #155724; text-align: center;'>Calculadora de Huella de Carbono 🌍</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='color: #155724;'>¿Qué es una huella de carbono? 🌱</h2>", unsafe_allow_html=True)
     st.write("""
@@ -239,11 +239,11 @@ def mostrar_calculadora():
         
         # Mostrar imágenes según el resultado
         if total_toneladas >= 6:
-            st.markdown("<center><img src='images/6.png' width='200'></center>", unsafe_allow_html=True)
-            st.markdown("<center><img src='images/alto.png' width='200'></center>", unsafe_allow_html=True)
+            st.image("images/6.png", width=200)
+            st.image("images/alto.png", width=200)
         else:
-            st.markdown("<center><img src='images/4.png' width='200'></center>", unsafe_allow_html=True)
-            st.markdown("<center><img src='images/bajo.png' width='200'></center>", unsafe_allow_html=True)
+            st.image("images/4.png", width=200)
+            st.image("images/bajo.png", width=200)
 
         if st.button('Volver al inicio'):
             st.session_state.pagina = 0
@@ -270,7 +270,7 @@ st.markdown(
     }
     div.stButton > button {
         background-color: #155724;
-        color: white;
+        color: #d4edda;
         border: none;
         padding: 10px 20px;
         text-align: center;
@@ -288,5 +288,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
 
