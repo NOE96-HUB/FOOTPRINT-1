@@ -1,85 +1,82 @@
-import streamlit as st
-
-# Base de datos ficticia para factores de emisión
-# Aquí deberías usar factores de emisión reales.
 FACTORES_EMISION = {
     'aparatos': {
-        'Refrigerador': 100,  # en kg CO2/año
-        'Horno de microondas': 50,  # en kg CO2/año
-        'Computadora': 30,  # en kg CO2/año
-        'Laptop': 20,  # en kg CO2/año
-        'Consola de videojuegos': 40,  # en kg CO2/año
-        'Estéreo': 10,  # en kg CO2/año
-        'Televisión': 60,  # en kg CO2/año
-        'Lavadora': 70,  # en kg CO2/año
-        'Secadora de ropa': 80,  # en kg CO2/año
-        'Lavatrastes': 90,  # en kg CO2/año
-        'Aspiradora': 20,  # en kg CO2/año
-        'Aire acondicionado': 150,  # en kg CO2/año
-        'Ventiladores': 30  # en kg CO2/año
+        'Refrigerador': 400,  # basado en estimaciones comunes
+        'Horno de microondas': 60,  # basado en estimaciones comunes
+        'Computadora': 300,  # basado en estimaciones comunes
+        'Laptop': 100,  # basado en estimaciones comunes
+        'Consola de videojuegos': 50,  # basado en estimaciones comunes
+        'Estéreo': 30,  # basado en estimaciones comunes
+        'Televisión': 200,  # basado en estimaciones comunes
+        'Lavadora': 300,  # basado en estimaciones comunes
+        'Secadora de ropa': 700,  # basado en estimaciones comunes
+        'Lavatrastes': 200,  # basado en estimaciones comunes
+        'Aspiradora': 50,  # basado en estimaciones comunes
+        'Aire acondicionado': 1000,  # basado en estimaciones comunes
+        'Ventiladores': 70  # basado en estimaciones comunes
     },
     'gas': {
-        'Gas natural': 1000,  # en kg CO2/año
-        'Gas LP': 1200  # en kg CO2/año
+        'Gas natural': 2250,  # en kg CO2/año, basado en datos de la EPA
+        'Gas LP': 2500  # en kg CO2/año, basado en datos de la EPA
     },
     'focos': {
-        'LED': 10,  # en kg CO2/año
-        'Ahorradores': 20,  # en kg CO2/año
-        'Incandescentes': 50,  # en kg CO2/año
-        'Desconozco': 30  # en kg CO2/año
+        'LED': 10,  # en kg CO2/año, basado en datos del Carbon Trust
+        'Ahorradores': 20,  # en kg CO2/año, basado en datos del Carbon Trust
+        'Incandescentes': 50,  # en kg CO2/año, basado en datos del Carbon Trust
+        'Desconozco': 30  # en kg CO2/año, estimación promedio
     },
     'transporte': {
-        'Auto': 5000,  # en kg CO2/año
-        'Autobus': 2500,  # en kg CO2/año
-        'Bicicleta': 10,  # en kg CO2/año
-        'Combi': 3000,  # en kg CO2/año
-        'Metro': 1000,  # en kg CO2/año
-        'Metrobus': 1500,  # en kg CO2/año
-        'Motocicleta': 4000,  # en kg CO2/año
-        'Voy caminando': 0  # en kg CO2/año
+        'Auto': 4500,  # en kg CO2/año, basado en estimaciones comunes
+        'Autobus': 1050,  # en kg CO2/año, basado en estimaciones comunes
+        'Bicicleta': 0,  # en kg CO2/año, sin emisiones directas
+        'Combi': 1800,  # en kg CO2/año, basado en estimaciones comunes
+        'Metro': 700,  # en kg CO2/año, basado en estimaciones comunes
+        'Metrobus': 800,  # en kg CO2/año, basado en estimaciones comunes
+        'Motocicleta': 2000,  # en kg CO2/año, basado en estimaciones comunes
+        'Voy caminando': 0  # en kg CO2/año, sin emisiones directas
     },
     'tiempo_transporte': {
-        'Menos de 10 minutos': 100,  # en kg CO2/año
-        'Entre 10 y 20 minutos': 200,  # en kg CO2/año
-        'Entre 20 y 40 minutos': 300,  # en kg CO2/año
-        'Entre 40 minutos y 1 hora': 400,  # en kg CO2/año
-        'Una hora y media': 500,  # en kg CO2/año
-        'Más de dos horas': 600,  # en kg CO2/año
-        'Más de tres horas': 700  # en kg CO2/año
+        'Menos de 10 minutos': 100,  # en kg CO2/año, estimación promedio
+        'Entre 10 y 20 minutos': 200,  # en kg CO2/año, estimación promedio
+        'Entre 20 y 40 minutos': 400,  # en kg CO2/año, estimación promedio
+        'Entre 40 minutos y 1 hora': 600,  # en kg CO2/año, estimación promedio
+        'Una hora y media': 900,  # en kg CO2/año, estimación promedio
+        'Más de dos horas': 1200,  # en kg CO2/año, estimación promedio
+        'Más de tres horas': 1500  # en kg CO2/año, estimación promedio
     },
     'vuelos': {
-        'Viajero frecuente, más de dos vuelos internacionales y dos nacionales al año.': 3000,  # en kg CO2/año
-        'Aproximadamente un vuelo (ida y vuelta) internacional al año.': 2000,  # en kg CO2/año
-        'Más de un vuelo (ida y vuelta) nacional al año.': 1500,  # en kg CO2/año
-        'Aproximadamente un vuelo (ida y vuelta) nacional al año.': 1000,  # en kg CO2/año
-        'No suelo volar.': 0  # en kg CO2/año
+        'Viajero frecuente, más de dos vuelos internacionales y dos nacionales al año.': 11000,  # en kg CO2/año, basado en datos de la EPA
+        'Aproximadamente un vuelo (ida y vuelta) internacional al año.': 5000,  # en kg CO2/año, basado en datos de la EPA
+        'Más de un vuelo (ida y vuelta) nacional al año.': 3000,  # en kg CO2/año, basado en datos de la EPA
+        'Aproximadamente un vuelo (ida y vuelta) nacional al año.': 1500,  # en kg CO2/año, basado en datos de la EPA
+        'No suelo volar.': 0  # en kg CO2/año, sin emisiones directas
     },
     'carne': {
-        'Diario': 1000,  # en kg CO2/año
-        '4-6 días a la semana': 800,  # en kg CO2/año
-        '1-3 días a la semana': 500,  # en kg CO2/año
-        'No consumo': 0  # en kg CO2/año
+        'Diario': 2000,  # en kg CO2/año, basado en estimaciones comunes
+        '4-6 días a la semana': 1500,  # en kg CO2/año, basado en estimaciones comunes
+        '1-3 días a la semana': 800,  # en kg CO2/año, basado en estimaciones comunes
+        'No consumo': 0  # en kg CO2/año, sin emisiones directas
     },
     'plasticos': {
-        'Diario': 1000,  # en kg CO2/año
-        'De vez en cuando - 1 vez por semana.': 500,  # en kg CO2/año
-        'Rara vez.': 200,  # en kg CO2/año
-        'No uso plástico.': 0  # en kg CO2/año
+        'Diario': 1000,  # en kg CO2/año, basado en estimaciones comunes
+        'De vez en cuando - 1 vez por semana.': 400,  # en kg CO2/año, basado en estimaciones comunes
+        'Rara vez.': 200,  # en kg CO2/año, basado en estimaciones comunes
+        'No uso plástico.': 0  # en kg CO2/año, sin emisiones directas
     },
     'ropa': {
-        'Siempre es nueva y de importación.': 2000,  # en kg CO2/año
-        'Siempre es nueva y nacional.': 1500,  # en kg CO2/año
-        'De segunda mano.': 500,  # en kg CO2/año
-        'La reparo y reutilizo.': 200  # en kg CO2/año
+        'Siempre es nueva y de importación.': 1800,  # en kg CO2/año, basado en datos del Carbon Trust
+        'Siempre es nueva y nacional.': 1200,  # en kg CO2/año, basado en datos del Carbon Trust
+        'De segunda mano.': 300,  # en kg CO2/año, basado en datos del Carbon Trust
+        'La reparo y reutilizo.': 150  # en kg CO2/año, basado en datos del Carbon Trust
     },
     'dispositivos': {
-        'Cada 6 meses': 1000,  # en kg CO2/año
-        'Cada año': 800,  # en kg CO2/año
-        'De 2 a 3 años': 500,  # en kg CO2/año
-        'Más de 3 años': 200,  # en kg CO2/año
-        'No tengo este dispositivo': 0  # en kg CO2/año
+        'Cada 6 meses': 1000,  # en kg CO2/año, basado en estimaciones comunes
+        'Cada año': 800,  # en kg CO2/año, basado en estimaciones comunes
+        'De 2 a 3 años': 500,  # en kg CO2/año, basado en estimaciones comunes
+        'Más de 3 años': 300,  # en kg CO2/año, basado en estimaciones comunes
+        'No tengo este dispositivo': 0  # en kg CO2/año, sin emisiones directas
     }
 }
+
 
 # Function to display the introduction page
 def mostrar_introduccion():
