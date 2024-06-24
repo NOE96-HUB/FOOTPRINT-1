@@ -284,8 +284,8 @@ st.markdown(
         color: #155724 !important;
     }
     .stButton>button {
-        background-color: #D4EDDA !important;
-        color: #155724 !important;  /* Texto verde oscuro */
+        background-color: #84CF96 !important;  /* Fondo verde claro */
+        color: #ffffff !important;  /* Texto blanco */
         border: none;
         padding: 10px 20px;
         text-align: center;
@@ -303,6 +303,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 
 
