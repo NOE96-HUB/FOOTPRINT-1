@@ -277,15 +277,15 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-color: #D4EDDA; 
-        color: #09FF41;
+        background-color: #d4edda;
+        color: #155724;
     }
     h1, h2, div, p {
         color: #155724 !important;
     }
-    div.stButton > button {
-        background-color: #155724;
-        color: #ffffff;  /* Texto blanco */
+    .stButton>button {
+        background-color: #155724 !important;
+        color: #ffffff !important;  /* Texto blanco */
         border: none;
         padding: 10px 20px;
         text-align: center;
@@ -303,5 +303,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 
