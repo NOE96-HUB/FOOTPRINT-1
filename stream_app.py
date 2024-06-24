@@ -1,3 +1,6 @@
+import streamlit as st
+
+# Base de datos con factores de emisión reales (aproximados)
 FACTORES_EMISION = {
     'aparatos': {
         'Refrigerador': 400,  # basado en estimaciones comunes
