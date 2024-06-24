@@ -227,7 +227,7 @@ def mostrar_calculadora():
         total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_celular', ''), 0)
         total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_tableta', ''), 0)
         total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_computadora', ''), 0)
-        total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_consola', ''),
+        total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_consola', ''), 0)
         total += FACTORES_EMISION['dispositivos'].get(st.session_state.get('cambio_consola', ''), 0)
 
         # Convertir a toneladas
