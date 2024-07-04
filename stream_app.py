@@ -82,8 +82,8 @@ FACTORES_EMISION = {
 
 # Function to display the introduction page
 def mostrar_introduccion():
-    st.markdown("<h1 style='color: #155724; text-align: center;'>Calculadora de Huella de Carbono 🌍</h1>", unsafe_allow_html=True)
-    st.markdown("<h2 style='color: #155724;'>¿Qué es una huella de carbono? 🌱</h2>", unsafe_allow_html=True)
+    st.markdown("<h1 style='color: #155724; text-align: center;'>Calculadora de Huella de Carbono BIOEVERYTHING 🌍</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color: #155724;'>¿Qué es nuestra huella de carbono? 🌱</h2>", unsafe_allow_html=True)
     st.write("""
     La huella de carbono es la totalidad de gases de efecto invernadero emitidos por efecto directo o indirecto de un individuo, organización, evento o producto. 
     Se mide en unidades de dióxido de carbono equivalente (CO2e) y se calcula considerando diversas actividades como el transporte, el consumo de energía, 
